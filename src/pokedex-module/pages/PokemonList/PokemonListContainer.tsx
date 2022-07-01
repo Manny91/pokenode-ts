@@ -11,26 +11,32 @@ import {
 
 const PokemonListContainer: FC = () => {
   const dispatch = useDispatch();
-  //   const fetchPokemonsData = () => dispatch(fetchPokemons());
-  //   const pokemons = useSelector(getPokemons);
-  //   const loading = useSelector(getPokemonsLoading);
-  //   const error = useSelector(getPokemonsError);
-  //   const toast = useToast();
+  const fetchPokemonsData = () => dispatch(fetchPokemons());
+  const pokemons = useSelector(getPokemons);
+  const loading = useSelector(getPokemonsLoading);
+  const error = useSelector(getPokemonsError);
+  const toast = useToast();
   useEffect(() => {
-    // fetchPokemonsData();
+    fetchPokemonsData();
   }, [useDispatch]);
 
-  //   useEffect(() => {
-  //     if (error) {
-  //       toast({
-  //         title: "Oops!",
-  //         status: "error",
-  //         position: "top-right",
-  //         description: error,
-  //       });
-  //     }
-  //   }, []);
-  return <Page>test</Page>;
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: "Oops!",
+        status: "error",
+        position: "top-right",
+        description: error,
+      });
+    }
+  }, []);
+  return (
+    <Page>
+      {pokemons.map(({ id, name }) => (
+        <div key={id}>{name}</div>
+      ))}
+    </Page>
+  );
 };
 
 export default PokemonListContainer;

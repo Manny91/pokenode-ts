@@ -18,3 +18,8 @@ export const getPokemonsError = createSelector(
   pokemonState,
   (slice) => slice.error
 );
+
+export const getPokemonPagination = createSelector(
+  pokemonState,
+  (slice) => slice.pagination
+);
