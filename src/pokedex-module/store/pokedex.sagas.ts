@@ -1,3 +1,4 @@
+import { PayloadAction } from "@reduxjs/toolkit";
 import {
   NamedAPIResource,
   NamedAPIResourceList,
@@ -7,6 +8,9 @@ import {
 import { all, put, select, takeLatest } from "redux-saga/effects";
 import getErrorFromException from "../helpers/getErrorFromException";
 import {
+  fetchPokemonDetail,
+  fetchPokemonDetailError,
+  fetchPokemonDetailSuccess,
   fetchPokemons,
   fetchPokemonsError,
   fetchPokemonsSuccess,
@@ -21,6 +25,7 @@ export function* pokedexSagas() {
   yield all([
     takeLatest(fetchPokemons.type, fetchPokemonsSaga),
     takeLatest(fetchTypes.type, fetchPokemonTypesSaga),
+    takeLatest(fetchPokemonDetail.type, fetchPokemonDetailSaga),
   ]);
 }
 
@@ -78,6 +83,24 @@ export function* fetchPokemonTypesSaga() {
     const errorMessage = getErrorFromException(e);
     yield put({
       type: fetchTypesError.type,
+      payload: errorMessage,
+    });
+  }
+}
+export function* fetchPokemonDetailSaga({
+  payload,
+}: PayloadAction<string, string>) {
+  try {
+    const api = new PokemonClient();
+    const response: Pokemon = yield api.getPokemonById(+payload);
+    yield put({
+      type: fetchPokemonDetailSuccess.type,
+      payload: response,
+    });
+  } catch (e) {
+    const errorMessage = getErrorFromException(e);
+    yield put({
+      type: fetchPokemonDetailError.type,
       payload: errorMessage,
     });
   }
