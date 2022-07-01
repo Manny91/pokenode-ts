@@ -20,6 +20,7 @@ const PokemonListContainer: FC = () => {
   const loading = useSelector(getPokemonsLoading);
   const error = useSelector(getPokemonsError);
   const toast = useToast();
+
   useEffect(() => {
     fetchPokemonsData();
     fetchPokemonsTypes();

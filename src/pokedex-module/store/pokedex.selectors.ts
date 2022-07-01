@@ -25,3 +25,11 @@ export const getPokemonPagination = createSelector(
 );
 
 export const getTypes = createSelector(pokemonState, (slice) => slice.types);
+export const getPokedex = createSelector(
+  pokemonState,
+  (slice) => slice.pokedex
+);
+export const getPokemonById = (id: number) =>
+  createSelector([getPokedex, getPokemons], (pokedex, pokemons) =>
+    pokedex[id] ? pokedex[id] : pokemons[Math.max(id - 1, 0)]
+  );
