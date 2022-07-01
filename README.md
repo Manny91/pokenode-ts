@@ -1,6 +1,37 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Test project using pokenode-ts client
+
+[Demo here](https://pokenode-test.vercel.app/)
+
+---
+
+## Challenges
+
+- Handling correctly the data flow as pokenode-ts when retrieving pokemons will only return a very minimum data
+- Making sure the state is fast when navigating to the detail and avoiding extra calls to the server
+- because using that third party library its bit trickier to test rather than using api calls directly to https://pokeapi.co/,
+
+---
+
+
+## What part of building the project was the most difficult? Why?
+
+- Definitely when working with pokemonapi although is quite extensive and super helpful to build this app its also bit painful 
+  to load all the pokemon data just because all the endpoint are super abstracted that returns an own entity, for instance when getting all pokemons it
+  it will only return with an array of just name and a url and then you need to call to get the pokemon detail of each one if you potentially want to load   or handle more data
+  
+
+# Whats something new about React, or Javascript, or development in general that you learned recently?
+  
+  I'm currently learning more about Nextjs, Recoil and AWS. What I've discovered and learned about React that I've felt in love with it is    "@reduxjs/toolkit" which makes a huge difference reducing the boilerplate of the redux architecture.
+
+# Who’s that Pokemon?
+
+![image](https://user-images.githubusercontent.com/2591222/176941081-9eb05da6-3601-47a9-84e6-9e1e35457a8e.png)
+
+Mimikyu! a very strong typed pokemon which I really like. Ghost/fairy is a really good combo in my opinion.
+
+
 
 ## Available Scripts
 
