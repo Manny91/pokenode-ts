@@ -35,7 +35,7 @@ const PokemonDetailContainer: FC = () => {
         description: error,
       });
     }
-  }, []);
+  }, [error]);
   return (
     <Page>
       <PokemonDetail loading={pokemonLoading} pokemon={pokemonDetail} />

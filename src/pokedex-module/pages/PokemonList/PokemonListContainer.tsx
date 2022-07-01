@@ -35,7 +35,7 @@ const PokemonListContainer: FC = () => {
         description: error,
       });
     }
-  }, []);
+  }, [error]);
 
   return (
     <Page>
