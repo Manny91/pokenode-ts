@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Page from "../../components/Page";
 import { fetchPokemonDetail } from "../../store/pokedex.reducer";
-
 import {
   getPokemonById,
   getPokemonsError,
