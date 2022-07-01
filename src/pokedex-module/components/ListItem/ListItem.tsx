@@ -2,15 +2,19 @@ import styled from "@emotion/styled";
 import { FC } from "react";
 
 import theme from "../../../theme";
+import PokeImage from "../PokeImage/PokeImage";
+import StyledLink from "../StyledLink/StyledLink";
 import H6 from "../Typography/H6";
 
 const ListItem: FC<{ name: string; id: number }> = ({ name, id }) => {
   return (
     <Container>
-      <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-      />
-      <Name>{name}</Name>
+      <StyledLink to={`/${!!id ? id : ""}`}>
+        <PokeImage
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+        />
+        <Name>{name}</Name>
+      </StyledLink>
     </Container>
   );
 };
