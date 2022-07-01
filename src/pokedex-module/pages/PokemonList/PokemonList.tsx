@@ -22,17 +22,16 @@ const PokemonList: FC<PokemonListProps> = ({
     useState<Pokemon[]>(pokemons);
 
   useEffect(() => {
-    const filtered = pokemons.filter((pokemon) =>
-      pokemon.types.some(
-        ({ type }) => type.name.indexOf(`${typeSelected}`) > -1
-      )
-    );
+    let filtered = pokemons;
+    if (typeSelected) {
+      filtered = pokemons.filter((pokemon) =>
+        pokemon.types.some(
+          ({ type }) => type.name.indexOf(`${typeSelected}`) > -1
+        )
+      );
+    }
     setPokemonListFiltered(filtered);
   }, [typeSelected, pokemons]);
-
-  useEffect(() => {
-    setPokemonListFiltered(pokemons);
-  }, [pokemons]);
 
   const handleLoadMore = () => {
     loadPokemons();
