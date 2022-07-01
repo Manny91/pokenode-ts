@@ -76,7 +76,7 @@ const PokemonDetail: FC<{ pokemon: Pokemon; loading: boolean }> = ({
               <Text>Weight: {parseWeight(weight)}</Text>
             </Size>
           </BasicInfo>
-
+          <Separator />
           <H5>Moveset:</H5>
           <Moves>
             {moves
@@ -182,6 +182,11 @@ const BackButton = styled(Button)`
   &:hover {
     background-color: ${theme.palette.black.backgroundHover};
   }
+`;
+
+const Separator = styled.hr`
+  width: 100%;
+  border-color: ${theme.palette.black.background};
 `;
 
 export default PokemonDetail;
