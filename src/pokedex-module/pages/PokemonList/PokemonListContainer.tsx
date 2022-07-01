@@ -8,6 +8,7 @@ import {
   getPokemonsError,
   getPokemonsLoading,
 } from "../../store/pokedex.selectors";
+import PokemonList from "./PokemonList";
 
 const PokemonListContainer: FC = () => {
   const dispatch = useDispatch();
@@ -30,11 +31,15 @@ const PokemonListContainer: FC = () => {
       });
     }
   }, []);
+
   return (
     <Page>
-      {pokemons.map(({ id, name }) => (
-        <div key={id}>{name}</div>
-      ))}
+      <PokemonList
+        pokemons={pokemons}
+        loading={loading}
+        types={[]}
+        loadPokemons={fetchPokemonsData}
+      />
     </Page>
   );
 };
