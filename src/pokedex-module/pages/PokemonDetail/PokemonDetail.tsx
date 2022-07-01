@@ -15,6 +15,7 @@ import StyledLink from "../../components/StyledLink/StyledLink";
 import H3 from "../../components/Typography/H3";
 import H5 from "../../components/Typography/H5";
 import statToString from "../../helpers/statToString";
+import TypeDisplayer from "../../components/TypeDisplayer/TypeDisplayer";
 
 const PokemonDetail: FC<{ pokemon: Pokemon; loading: boolean }> = ({
   pokemon,
@@ -53,6 +54,7 @@ const PokemonDetail: FC<{ pokemon: Pokemon; loading: boolean }> = ({
             <Flex>
               <H3>#{id}</H3> <Name>{name}</Name>
             </Flex>
+            <TypeDisplayer types={types} />
           </Column>
           <Column>
             <ImageContainer>
