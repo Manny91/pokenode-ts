@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { Pokemon } from "pokenode-ts";
 import { FC, useRef } from "react";
 
-import theme from "../../../theme";
 import ListItem from "../ListItem/ListItem";
 
 const List: FC<{

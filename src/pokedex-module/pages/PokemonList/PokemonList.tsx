@@ -38,11 +38,45 @@ const PokemonList: FC<PokemonListProps> = ({
     loadPokemons();
   };
 
+  const onChangeHandler = (name: string) => {
+    setPokemonListFiltered(
+      pokemons.filter((value) => value.name.indexOf(name) > -1)
+    );
+  };
   return (
     <>
       <Header>
         <H1>Pokedex</H1>
-        <Filters></Filters>
+        <Filters>
+          <FilterWrapper>
+            <InputSearch
+              placeholder="Filter by name"
+              onChange={(e) => onChangeHandler(e.target.value)}
+            />
+          </FilterWrapper>
+          <FilterWrapper>
+            <Select
+              onChange={(e) => setTypeSelected(e.target.value)}
+              placeholder="Select a type"
+              defaultValue={0}
+            >
+              <option disabled value="0">
+                Filter by type
+              </option>
+
+              <option key={"any"} value="">
+                any
+              </option>
+              {types.map((type) => {
+                return (
+                  <option key={type.name} value={type.name}>
+                    {type.name}
+                  </option>
+                );
+              })}
+            </Select>
+          </FilterWrapper>
+        </Filters>
       </Header>
 
       <List
@@ -69,4 +103,18 @@ const FilterWrapper = styled.div`
   border: 5px double;
   flex: 1;
 `;
+
+const InputSearch = styled.input`
+  ${theme.input};
+
+  padding: 7px 12px;
+  width: 100%;
+  ::placeholder {
+    color: black;
+  }
+`;
+const Select = styled.select`
+  ${theme.input};
+`;
+
 export default PokemonList;
