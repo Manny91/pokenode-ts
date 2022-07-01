@@ -1,6 +1,17 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+## Test project using pokenode-ts client
+
+[Demo here](https://pokenode-test.vercel.app/)
+
+---
+
+## Challenges
+
+- Handling correctly the data flow as pokenode-ts when retrieving pokemons will only return a very minimum data
+- Making sure the state is fast when navigating to the detail and avoiding extra calls to the server
+- because using that third party library its bit trickier to test rather than using api calls directly to https://pokeapi.co/,
+
+
 
 ## Available Scripts
 
