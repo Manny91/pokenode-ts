@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { NamedAPIResource, Pokemon } from "pokenode-ts";
 
+type Dictionary<T> = {
+  [Key: string]: T;
+};
+
 export type PokedexState = {
   pokemonList: Pokemon[];
   loading: boolean;
   error: string;
   pagination: Pagination;
   types: NamedAPIResource[];
+  pokedex: Dictionary<Pokemon>;
 };
 
 export type Pagination = {
@@ -22,6 +27,7 @@ export const INITIAL_STATE: PokedexState = {
     offset: 0,
     limit: 50,
   },
+  pokedex: {} as Dictionary<Pokemon>,
 };
 const pokedexReducer = createSlice({
   name: "pokedex",
@@ -64,6 +70,24 @@ const pokedexReducer = createSlice({
       state.loading = false;
       state.error = payload;
     },
+    fetchPokemonDetail: (state, _: PayloadAction<string>) => {
+      state.loading = true;
+      state.error = "";
+    },
+    fetchPokemonDetailSuccess: (state, { payload }: PayloadAction<Pokemon>) => {
+      const pokedexCopy = { ...state.pokedex };
+      pokedexCopy[`${payload.id}`] = payload;
+      return {
+        ...state,
+        pokedex: pokedexCopy,
+        loading: false,
+        error: "",
+      };
+    },
+    fetchPokemonDetailError: (state, { payload }: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = payload;
+    },
   },
 });
 
@@ -74,6 +98,9 @@ export const {
   fetchTypes,
   fetchTypesError,
   fetchTypesSuccess,
+  fetchPokemonDetail,
+  fetchPokemonDetailError,
+  fetchPokemonDetailSuccess,
 } = pokedexReducer.actions;
 
 export default pokedexReducer.reducer;

@@ -1,5 +1,8 @@
 import { Pokemon } from "pokenode-ts";
 import reducer, {
+  fetchPokemonDetail,
+  fetchPokemonDetailError,
+  fetchPokemonDetailSuccess,
   fetchPokemons,
   fetchPokemonsError,
   fetchPokemonsSuccess,
@@ -114,6 +117,45 @@ describe("Po Reducer", () => {
       expect(reducer(INITIAL_STATE, fetchTypesSuccess(payload))).toEqual(
         expected
       );
+    });
+  });
+  describe("fetchPokemonDetail", () => {
+    it("should set loading true and clear error state", () => {
+      const expected: PokedexState = {
+        ...INITIAL_STATE,
+        error: "",
+        loading: true,
+      };
+      expect(reducer(INITIAL_STATE, fetchPokemonDetail)).toEqual(expected);
+    });
+  });
+  describe("fetchPokemonDetailError", () => {
+    it("should set loading false and set payload error", () => {
+      const error = "test fetch details error";
+      const expected: PokedexState = {
+        ...INITIAL_STATE,
+        error,
+        loading: false,
+      };
+      expect(reducer(INITIAL_STATE, fetchPokemonDetailError(error))).toEqual(
+        expected
+      );
+    });
+  });
+  describe("fetchPokemonDetailSuccess", () => {
+    it("should set loading false and set the payload into the pokedex object", () => {
+      const payload = bulbasaur;
+      const expected: PokedexState = {
+        ...INITIAL_STATE,
+        error: "",
+        loading: false,
+        pokedex: {
+          1: bulbasaur,
+        },
+      };
+      expect(
+        reducer(INITIAL_STATE, fetchPokemonDetailSuccess(payload))
+      ).toEqual(expected);
     });
   });
 });
