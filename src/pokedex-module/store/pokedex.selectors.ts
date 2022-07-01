@@ -23,3 +23,5 @@ export const getPokemonPagination = createSelector(
   pokemonState,
   (slice) => slice.pagination
 );
+
+export const getTypes = createSelector(pokemonState, (slice) => slice.types);
