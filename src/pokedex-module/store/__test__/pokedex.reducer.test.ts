@@ -3,6 +3,9 @@ import reducer, {
   fetchPokemons,
   fetchPokemonsError,
   fetchPokemonsSuccess,
+  fetchTypes,
+  fetchTypesError,
+  fetchTypesSuccess,
   INITIAL_STATE,
   PokedexState,
 } from "./../pokedex.reducer";
@@ -58,6 +61,57 @@ describe("Po Reducer", () => {
         pokemonList: starters,
       };
       expect(reducer(INITIAL_STATE, fetchPokemonsSuccess(starters))).toEqual(
+        expected
+      );
+    });
+  });
+
+  describe("fetchTypes", () => {
+    it("should set loading true and clear error state", () => {
+      const expected: PokedexState = {
+        ...INITIAL_STATE,
+        error: "",
+        loading: true,
+      };
+      expect(reducer(INITIAL_STATE, fetchTypes)).toEqual(expected);
+    });
+  });
+
+  describe("fetchTypesError", () => {
+    it("should set loading false and set payload error", () => {
+      const error = "test fetch types error";
+      const expected: PokedexState = {
+        ...INITIAL_STATE,
+        error,
+        loading: false,
+      };
+      expect(reducer(INITIAL_STATE, fetchTypesError(error))).toEqual(expected);
+    });
+  });
+  describe("fetchTypesSuccess", () => {
+    it("should set loading false and set the payload into the pokedex object", () => {
+      const types = [
+        {
+          name: "fire",
+          url: "test/url/fire",
+        },
+        {
+          name: "water",
+          url: "test/url/water",
+        },
+        {
+          name: "grass",
+          url: "test/url/grass",
+        },
+      ];
+      const payload = types;
+      const expected: PokedexState = {
+        ...INITIAL_STATE,
+        error: "",
+        loading: false,
+        types,
+      };
+      expect(reducer(INITIAL_STATE, fetchTypesSuccess(payload))).toEqual(
         expected
       );
     });
